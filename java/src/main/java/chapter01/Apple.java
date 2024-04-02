@@ -58,6 +58,16 @@ class Apple {
         return result;
     }
 
+    public static List<Apple> filterApplesPredicate(List<Apple> inventory, ApplePredicate predicate){
+        List<Apple> result = new ArrayList<>();
+        for(Apple apple : inventory){
+            if(predicate.test(apple)){
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
     public static boolean isGreenApple(Apple apple) {
         return "green".equals(apple.getColor());
     }
@@ -77,6 +87,12 @@ class Apple {
         }
 
         return result;
+    }
+
+    public static void prettyPrintApple (List<Apple> inventory, AppleFormatter formatter){
+        for(Apple apple : inventory){
+            System.out.println(formatter.accept(apple));
+        }
     }
 
 }

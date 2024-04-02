@@ -3,8 +3,7 @@ package chapter01;
 import java.util.Arrays;
 import java.util.List;
 
-import static chapter01.Apple.filterApples;
-import static chapter01.Apple.filterHeavyApples;
+import static chapter01.Apple.*;
 
 public class FilterlingApples {
     public static void main(String[] args) {
@@ -26,6 +25,16 @@ public class FilterlingApples {
         List<Apple> lambdaHeavyApples = filterApples(inventory, (Apple a) -> a.getWeight() > 150);
         System.out.println(lambdaHeavyApples);
 
+        prettyPrintApple(inventory, new AppleFancyFormatter());
+        prettyPrintApple(inventory, new AppleSimpleFormatter());
+
+        List<Apple> greenPredicate = filterApplesPredicate(inventory, new AppleGreenColorPredicate());
+        List<Apple> heavyPredicate = filterApplesPredicate(inventory, new AppleHeavyWeightPredicate());
+        List<Apple> heavyAndGreenPredicate = filterApplesPredicate(inventory, new AppleHeavyAndGreenPredicate());
+
+        System.out.println(greenPredicate);
+        System.out.println(heavyPredicate);
+        System.out.println(heavyAndGreenPredicate);
     }
 
 }
